@@ -29,10 +29,20 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
+    // ag Increment the quantity of the item in the cart
+    const updatedItem = { ...item, quantity: item.quantity + 1 };
+    dispatch(updateQuantity({ name: item.name, quantity: updatedItem.quantity }));
   };
 
   const handleDecrement = (item) => {
-   
+    // ag If greater than 1, decrement the quantity of the item in the cart
+    // Otherwise, remove the item from the cart
+    if (item.quantity === 1) {
+      dispatch(removeItem(item.name));
+    } elseif (item.quantity > 1) {
+      const updatedItem = { ...item, quantity: item.quantity - 1 };
+      dispatch(updateQuantity({ name: item.name, quantity: updatedItem.quantity }));
+    }
   };
 
   const handleRemove = (item) => {
