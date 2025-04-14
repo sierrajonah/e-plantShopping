@@ -267,6 +267,7 @@ function ProductList({ onHomeClick }) {
         setAddedToCart((prevState) => ({
            ...prevState,
            [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+
          }));
     }
 
@@ -302,7 +303,11 @@ function ProductList({ onHomeClick }) {
                                 <img className="product-image" src={plant.image} alt={plant.name} />
                                 <div className="product-title">{plant.name}</div>
                                 {/*Similarly like the above plant.name show other details like description and cost*/}
-                                <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                <div className="product-description">{plant.description}</div>
+                                <div className="product-cost">{plant.cost}</div>
+                                {/* <div className="product-quantity">Quantity: {addedToCart[plant.name] ? 1 : 0}</div> */}
+                                {/* <button className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button> */}
+                                <button  className="product-button" onClick={() => handleAddToCart(plant)} disabled={!!addedToCart[plant.name]}>{addedToCart[plant.name] ? "***Added to Cart***" : "Add to Cart"}</button>
                             </div>
                             ))}
                         </div>
