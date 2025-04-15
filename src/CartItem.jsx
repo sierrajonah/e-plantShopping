@@ -42,7 +42,7 @@ const CartItem = ({ onContinueShopping }) => {
     } else if (item.quantity > 1) {
       const updatedItem = { ...item, quantity: item.quantity - 1 };
       dispatch(updateQuantity({ name: item.name, quantity: updatedItem.quantity }));
-    }
+    };
   };
 
   const handleRemove = (item) => {
